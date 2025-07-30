@@ -28,6 +28,8 @@
   Optional:
   - special items
   - building
+  - crafting
+  - upgrading
   - special ending when you find more drugs
 
   Inspired by: Katana ZERO, Outer Wilds
