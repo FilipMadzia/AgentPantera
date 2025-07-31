@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D;
 
-    private bool _isGrounded;
+    
+    [SerializeField] private bool _isGrounded;
 
     private void Awake()
     {
@@ -73,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        _isGrounded = false;
+        if (other.gameObject.CompareTag("Ground"))
+            _isGrounded = false;
     }
 
     private void OnEnable()
