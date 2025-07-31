@@ -1,36 +1,33 @@
-# Game ideas
+# Title
 
-<details>
-  <summary>Racing game</summary>
+## Overview
 
-  Main mechanics:
-  - driving in a loop
-  - competing with bots for first place
-  
-  Optional:
-  - car upgrades
-  - different race tracks
+Game made for [GMTK Game Jam 2025](https://itch.io/jam/gmtk-2025). The theme of the jam was
 
-  Inspired by: original idea
-</details>
+**Loop**
 
-<details>
-  <summary>Zombie survival game with a time loop</summary>
-  
-  Main mechanics:
-  - surviving a zombie apocalypse
-    - running
-    - guns
-  - every death causes the loop to start over
-  - the loop is caused by a drug, after some time (e.g. 10min) the player dies from withdrawal
-  - objective: find a way to stop the apocalypse (and die after because of the lack of drug)
+The idea I've come up with is a 2D puzzle platformer with guns and zombies as enemies. The player is a secret agent tasked with infiltrating an abandoned hospital full of zombies in order to stop the spread of the infection. Because of the high risk of the mission, the player has access to a time loop machine. The machine will loop back to the time it was turned on once the player dies or after 2min. Once the player reaches the core of the hospital and stops the source of the infection the time loop machine will be turned off
 
-  Optional:
-  - special items
-  - building
-  - crafting
-  - upgrading
-  - special ending when you find more drugs
+## Core gameplay mechanics
 
-  Inspired by: Katana ZERO, Outer Wilds
-</details>
+Smooth, fast-paced player movement
+
+Zombie enemies
+
+Death causing time to loop back to the start
+
+Timer that loops back to the start when it runs out
+
+Shooting bullets that kill the enemies
+
+Obstacles (e.g. spikes)
+
+Rooms with enemies, parkour elements, obstacles and simple puzzles (e.g. moving blocks onto buttons to open doors)
+
+## Credits
+
+Made by: [Filip Madzia](https://github.com/FilipMadzia)
+
+Made with: [Unity](https://unity.com)
+
+Inspired by: [Katana ZERO](https://store.steampowered.com/app/460950/Katana_ZERO/), [Outer Wilds](https://store.steampowered.com/app/753640/Outer_Wilds/)
