@@ -10,11 +10,18 @@ public class Timer : MonoBehaviour
     private void Awake()
     {
         _timerText = GetComponent<TextMeshProUGUI>();
-        _timeLoopManager = FindFirstObjectByType<TimeLoopManager>();
     }
 
     private void Start()
     {
+        _timeLoopManager = FindFirstObjectByType<TimeLoopManager>();
+        
+        DontDestroyOnLoad(FindFirstObjectByType<Canvas>().gameObject);
+        
         _timeLoopManager.OnTimerTick += (_, args) => _timerText.text = $"{args.SecondsLeft / 60:D2}:{args.SecondsLeft % 60:D2}";
+        _timeLoopManager.OnLoopTrigger += (_, _) =>
+        {
+            Destroy(FindFirstObjectByType<Canvas>().gameObject);
+        };
     }
 }

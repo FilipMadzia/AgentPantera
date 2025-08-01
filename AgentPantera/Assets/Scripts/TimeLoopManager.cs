@@ -13,6 +13,7 @@ public class TimeLoopManager : MonoBehaviour
     [SerializeField] private string sceneToLoopBackTo;
 
     public EventHandler<TimerTickEventArgs> OnTimerTick;
+    public EventHandler OnLoopTrigger;
     
     private PlayerDeath _playerDeath;
     private float _timer;
@@ -30,6 +31,14 @@ public class TimeLoopManager : MonoBehaviour
         _ticksLeft = timeBeforeLoop;
         
         OnTimerTick.Invoke(this, new TimerTickEventArgs { SecondsLeft = timeBeforeLoop });
+        
+        DontDestroyOnLoad(gameObject);
+        
+        SceneManager.sceneLoaded += (_, _) =>
+        {
+            _playerDeath = FindFirstObjectByType<PlayerDeath>();
+            _playerDeath.OnPlayerDeath += LoopTime;
+        };
     }
 
     private void Update()
@@ -48,6 +57,10 @@ public class TimeLoopManager : MonoBehaviour
 
     private void LoopTime(object sender, EventArgs e)
     {
+        OnLoopTrigger.Invoke(this, EventArgs.Empty);
+        
+        Destroy(this);
+        
         SceneManager.LoadScene(sceneToLoopBackTo);
     }
 }
