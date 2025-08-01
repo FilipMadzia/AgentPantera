@@ -71,13 +71,7 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody2D.linearVelocityY *= fallMultiplier;
     }
 
-    private bool IsGrounded()
-    {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
-            return true;
-        
-        return false;
-    }
+    private bool IsGrounded() => Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
 
     private void OnDrawGizmos()
     {

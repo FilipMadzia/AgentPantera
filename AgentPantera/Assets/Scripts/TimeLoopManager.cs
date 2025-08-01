@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,9 +12,10 @@ public class TimeLoopManager : MonoBehaviour
 {
     [SerializeField] private int timeBeforeLoop;
     [SerializeField] private string sceneToLoopBackTo;
+    [SerializeField] private float deathScreenDuration;
 
     public EventHandler<TimerTickEventArgs> OnTimerTick;
-    public EventHandler OnLoopTrigger;
+    public EventHandler OnRanOutOfTime;
     
     private PlayerDeath _playerDeath;
     private float _timer;
@@ -26,7 +28,7 @@ public class TimeLoopManager : MonoBehaviour
     
     private void Start()
     {
-        _playerDeath.OnPlayerDeath += LoopTime;
+        _playerDeath.OnPlayerDeath += (_, _) => StartCoroutine(LoopTime());
         _timer = timeBeforeLoop;
         _ticksLeft = timeBeforeLoop;
         
@@ -37,7 +39,7 @@ public class TimeLoopManager : MonoBehaviour
         SceneManager.sceneLoaded += (_, _) =>
         {
             _playerDeath = FindFirstObjectByType<PlayerDeath>();
-            _playerDeath.OnPlayerDeath += LoopTime;
+            _playerDeath.OnPlayerDeath += (_, _) => StartCoroutine(LoopTime());
         };
     }
 
@@ -50,16 +52,25 @@ public class TimeLoopManager : MonoBehaviour
             _ticksLeft--;
             OnTimerTick.Invoke(this, new TimerTickEventArgs { SecondsLeft = _ticksLeft });
         }
-        
-        if (_timer <= 0)
-            LoopTime(this, EventArgs.Empty);
-    }
 
-    private void LoopTime(object sender, EventArgs e)
+        if (_timer <= 0)
+        {
+            _timer = timeBeforeLoop;
+            _ticksLeft = timeBeforeLoop;
+            
+            OnRanOutOfTime.Invoke(this, EventArgs.Empty);
+            
+            StartCoroutine(LoopTime());
+        }
+    }
+    
+    private IEnumerator LoopTime()
     {
-        OnLoopTrigger.Invoke(this, EventArgs.Empty);
+        yield return new WaitForSeconds(deathScreenDuration);
         
-        Destroy(this);
+        _timer = timeBeforeLoop;
+        _ticksLeft = timeBeforeLoop;
+        OnTimerTick.Invoke(this, new TimerTickEventArgs { SecondsLeft = timeBeforeLoop });
         
         SceneManager.LoadScene(sceneToLoopBackTo);
     }

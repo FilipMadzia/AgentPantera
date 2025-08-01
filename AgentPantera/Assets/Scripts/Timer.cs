@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class Timer : MonoBehaviour
@@ -19,9 +20,5 @@ public class Timer : MonoBehaviour
         DontDestroyOnLoad(FindFirstObjectByType<Canvas>().gameObject);
         
         _timeLoopManager.OnTimerTick += (_, args) => _timerText.text = $"{args.SecondsLeft / 60:D2}:{args.SecondsLeft % 60:D2}";
-        _timeLoopManager.OnLoopTrigger += (_, _) =>
-        {
-            Destroy(FindFirstObjectByType<Canvas>().gameObject);
-        };
     }
 }
