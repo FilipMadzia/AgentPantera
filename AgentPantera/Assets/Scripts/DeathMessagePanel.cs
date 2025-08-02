@@ -16,7 +16,9 @@ public class DeathMessagePanel : MonoBehaviour
             deathMessagePanel.SetActive(false);
             
             _playerDeath = FindFirstObjectByType<PlayerDeath>();
-            _playerDeath.OnPlayerDeath += (_, _) => deathMessagePanel.SetActive(true);
+            
+            if (_playerDeath != null)
+                _playerDeath.OnPlayerDeath += (_, _) => deathMessagePanel.SetActive(true);
         };
     }
 }

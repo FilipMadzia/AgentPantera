@@ -40,7 +40,8 @@ public class TimeLoopManager : MonoBehaviour
         SceneManager.sceneLoaded += (_, _) =>
         {
             _playerDeath = FindFirstObjectByType<PlayerDeath>();
-            _playerDeath.OnPlayerDeath += (_, _) => StartCoroutine(LoopTime());
+            if (_playerDeath != null)
+                _playerDeath.OnPlayerDeath += (_, _) => StartCoroutine(LoopTime());
 
             if (SceneManager.GetActiveScene().name == sceneToLoopBackTo)
             {
