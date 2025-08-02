@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float slowFactor;
+    [SerializeField] private float airControlMultiplier;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallMultiplier;
     
@@ -42,19 +42,24 @@ public class PlayerMovement : MonoBehaviour
         var moveInput = _moveAction.ReadValue<float>();
 
         if (IsGrounded())
+            _rigidbody2D.linearVelocityX = moveInput * movementSpeed;
+        else
+            _rigidbody2D.linearVelocityX = moveInput * movementSpeed * airControlMultiplier;
+        
+        /*if (IsGrounded())
         {
             _rigidbody2D.linearVelocityX = moveInput * movementSpeed;
 
             return;
-        }
+        }*/
         
-        // slow down if no input
+        /*// slow down if no input
         if (moveInput == 0)
-            _rigidbody2D.linearVelocityX = Mathf.MoveTowards(_rigidbody2D.linearVelocityX, 0, slowFactor * Time.fixedDeltaTime);
+            _rigidbody2D.linearVelocityX = Mathf.MoveTowards(_rigidbody2D.linearVelocityX, 0, airControlMultiplier * Time.fixedDeltaTime);
         
         // slow down even more when input is in opposite direction
         if (moveInput * _rigidbody2D.linearVelocityX < 0)
-            _rigidbody2D.linearVelocityX = Mathf.MoveTowards(_rigidbody2D.linearVelocityX, 0, slowFactor * 2 * Time.fixedDeltaTime);
+            _rigidbody2D.linearVelocityX = Mathf.MoveTowards(_rigidbody2D.linearVelocityX, 0, airControlMultiplier * 2 * Time.fixedDeltaTime);*/
     }
 
     private void HandleJumping()

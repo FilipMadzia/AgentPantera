@@ -17,8 +17,6 @@ public class Timer : MonoBehaviour
     {
         _timeLoopManager = FindFirstObjectByType<TimeLoopManager>();
         
-        DontDestroyOnLoad(FindFirstObjectByType<Canvas>().gameObject);
-        
         _timeLoopManager.OnTimerTick += (_, args) => _timerText.text = $"{args.SecondsLeft / 60:D2}:{args.SecondsLeft % 60:D2}";
     }
 }
