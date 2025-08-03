@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.6787319, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   movementSpeed: 8
   airControlMultiplier: 0.8
   jumpForce: 8
-  fallMultiplier: 1.05
+  fallMultiplier: 1.01
   boxSize: {x: 0.95, y: 0.1}
   castDistance: 0.5
   groundLayer:

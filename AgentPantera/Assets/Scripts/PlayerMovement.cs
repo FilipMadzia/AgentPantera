@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _jumpAction;
     
     private Rigidbody2D _rigidbody2D;
-
+    
     private void Awake()
     {
         _moveAction = inputActions.FindAction("Move");

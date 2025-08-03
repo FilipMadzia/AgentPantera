@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 145416908127850682, guid: dfd3c6aca8c5f944ea8f06c1558e936b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 145416908127850682, guid: dfd3c6aca8c5f944ea8f06c1558e936b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.35650104
+      objectReference: {fileID: 0}
+    - target: {fileID: 145416908127850682, guid: dfd3c6aca8c5f944ea8f06c1558e936b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
     - target: {fileID: 4027106594163940161, guid: dfd3c6aca8c5f944ea8f06c1558e936b, type: 3}
       propertyPath: m_Name
       value: MovingPlatform
